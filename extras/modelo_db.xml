@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- SQL XML created by WWW SQL Designer, https://github.com/ondras/wwwsqldesigner/ -->
+<!-- Active URL: http://ondras.zarovi.cz/sql/demo/?keyword=default -->
+<sql>
+<datatypes db="postgresql">
+	<group color="rgb(238,238,170)" label="Numeric">
+		<type label="Integer" quote="" sql="INTEGER" length="0" re="INT"/>
+		<type label="Small Integer" quote="" sql="SMALLINT" length="0"/>
+		<type label="Big Integer" quote="" sql="BIGINT" length="0"/>
+		<type label="Decimal" quote="" sql="DECIMAL" length="1" re="numeric"/>
+		<type label="Serial" quote="" sql="SERIAL" length="0" re="SERIAL4" fk="Integer"/>
+		<type label="Big Serial" quote="" sql="BIGSERIAL" length="0" re="SERIAL8" fk="Big Integer"/>
+		<type label="Real" quote="" sql="BIGINT" length="0"/>
+		<type label="Single precision" quote="" sql="FLOAT" length="0"/>
+		<type label="Double precision" quote="" sql="DOUBLE" length="0" re="DOUBLE"/>
+	</group>
+
+	<group color="rgb(255,200,200)" label="Character">
+		<type label="Char" quote="'" sql="CHAR" length="1"/>
+		<type label="Varchar" quote="'" sql="VARCHAR" length="1" re="CHARACTER VARYING"/>
+		<type label="Text" quote="'" sql="TEXT" length="0"/>
+		<type label="Binary" quote="'" sql="BYTEA" length="1"/>
+		<type label="Boolean" quote="'" sql="BOOLEAN" length="0"/>
+	</group>
+
+	<group color="rgb(200,255,200)" label="Date &amp; Time">
+		<type label="Date" quote="'" sql="DATE" length="0"/>
+		<type label="Time" quote="'" sql="TIME" length="1"/>
+		<type label="Time w/ TZ" quote="'" sql="TIME WITH TIME ZONE" length="0"/>
+		<type label="Interval" quote="'" sql="INTERVAL" length="1"/>
+		<type label="Timestamp" quote="'" sql="TIMESTAMP" length="1"/>
+		<type label="Timestamp w/ TZ" quote="'" sql="TIMESTAMP WITH TIME ZONE" length="0"/>
+		<type label="Timestamp wo/ TZ" quote="'" sql="TIMESTAMP WITHOUT TIME ZONE" length="0"/>
+	</group>
+
+	<group color="rgb(200,200,255)" label="Miscellaneous">
+		<type label="XML" quote="'" sql="XML" length="1"/>
+		<type label="Bit" quote="'" sql="BIT" length="1"/>
+		<type label="Bit Varying" quote="'" sql="VARBIT" length="1" re="BIT VARYING"/>
+		<type label="Inet Host Addr" quote="'" sql="INET" length="0"/>
+		<type label="Inet CIDR Addr" quote="'" sql="CIDR" length="0"/>
+		<type label="Geometry" quote="'" sql="GEOMETRY" length="0"/>
+	</group>
+</datatypes><table x="464" y="248" name="bebidas">
+<row name="id_bebida" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="nome" null="1" autoincrement="0">
+<datatype>VARCHAR(256)</datatype>
+<default>NULL</default></row>
+<row name="id_fabricante" null="0" autoincrement="0">
+<datatype>VARCHAR(256)</datatype>
+<relation table="fabricantes" row="id_fabricante" />
+</row>
+<row name="id_categoria" null="0" autoincrement="0">
+<datatype>VARCHAR(256)</datatype>
+<relation table="categorias" row="id_categoria" />
+</row>
+<row name="teor_alcool" null="0" autoincrement="0">
+<datatype>DOUBLE</datatype>
+</row>
+<row name="ingredientes" null="1" autoincrement="0">
+<datatype>TEXT</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id_bebida</part>
+</key>
+<key type="FULLTEXT" name="">
+<part>id_fabricante</part>
+</key>
+<key type="INDEX" name="">
+</key>
+</table>
+<table x="722" y="246" name="lotes">
+<row name="id_lote" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="id_bebida" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="bebidas" row="id_bebida" />
+</row>
+<row name="preco" null="1" autoincrement="0">
+<datatype>DOUBLE</datatype>
+<default>NULL</default></row>
+<row name="qtde" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="codigo_lote" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="id_fonecedor" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="fornecedores" row="id_fornecedor" />
+</row>
+<key type="PRIMARY" name="">
+<part>id_lote</part>
+</key>
+</table>
+<table x="194" y="250" name="fabricantes">
+<row name="id_fabricante" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id_fabricante</part>
+</key>
+</table>
+<table x="907" y="325" name="fornecedores">
+<row name="id_fornecedor" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id_fornecedor</part>
+</key>
+</table>
+<table x="176" y="399" name="categorias">
+<row name="id_categoria" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id_categoria</part>
+</key>
+</table>
+</sql>

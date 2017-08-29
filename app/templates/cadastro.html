@@ -1,0 +1,201 @@
+<!-- Extends padrão -->
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <!-- Formulário de cadastro -->
+  <div class="container">
+      <form action="" method="POST">
+        <!-- Chave de segurança do flask_wtf -->
+        {{ form.csrf_token }}
+        <br>
+        <!-- Linha 1 - Nome da bebida e Fabricante -->
+        <div class="form-row">
+          <div class="col">
+            {% if form.errors.nome_bebida %}
+            {{ form.nome_bebida(class="form-control is-invalid", placeholder="Nome da bebida ") }}
+            <div class="invalid-feedback">
+              <ul>
+                {% for e in form.errors.nome_bebida %}
+                  <li>{{ e }}</li>
+                {% endfor %}
+              </ul>
+            </div>
+
+            {% else  %}
+            {{ form.nome_bebida(class="form-control", placeholder="Nome da bebida ") }}
+
+            {% endif %}
+          </div>
+          <div class="col">
+            {{  form.nome_fabricante(class="custom-select mb-2 mr-sm-2 mb-sm-0")  }}
+          </div>
+        </div>
+
+        <br>
+        <!-- Linha 2 - Categoria, Fornecedor e Lote-->
+        <div class="form-row">
+          <div class="col">
+            {{  form.nome_categoria(class="custom-select mb-2 mr-sm-2 mb-sm-0")  }}
+          </div>
+          <div class="col">
+            {{  form.nome_fornecedor(class="custom-select mb-2 mr-sm-2 mb-sm-0")  }}
+            {% if form.errors.nome_fornecedor %}
+            <div class="alert alert-danger" role="alert">
+              <ul>
+                {% for e in form.errors.nome_fornecedor %}
+                  <li>{{ e }}</li>
+                {% endfor %}
+              </ul>
+            </div>
+            {% endif %}
+          </div>
+          <div class="col-2">
+              {% if form.errors.codigo_lote %}
+                {{ form.codigo_lote(class="form-control is-invalid", placeholder="Código do Lote ") }}
+                <div class="invalid-feedback">
+                  <ul>
+                    {% for e in form.errors.codigo_lote %}
+                      <li>{{ e }}</li>
+                    {% endfor %}
+                  </ul>
+                </div>
+              {% else %}
+                {{ form.codigo_lote(class="form-control", placeholder="Código do Lote ") }}
+              {% endif %}
+          </div>
+        </div>
+
+        <br>
+        <!-- Linha 3 - Ingredientes-->
+        <div class="form-group">
+              {% if form.errors.ingredientes %}
+                {{ form.ingredientes(class="form-control is-invalid", placeholder="Ingredientes", rows="3") }}
+                <div class="invalid-feedback">
+                  <ul>
+                    {% for e in form.errors.ingredientes %}
+                      <li>{{ e }}</li>
+                    {% endfor %}
+                  </ul>
+                </div>
+              {% else %}
+                {{ form.ingredientes(class="form-control", placeholder="Ingredientes", rows="3") }}
+              {% endif %}
+        </div>
+        <!-- Linha 4 - Data de validade e teor alcoólico-->
+        <div class="form-row">
+          <div class="col">
+              {% if form.errors.data_validade %}
+                {{ form.data_validade(class="form-control is-invalid", placeholder="data de validade (dd/mm/yyyy)") }}
+                <div class="invalid-feedback">
+                  <ul>
+                    {% for e in form.errors.data_validade %}
+                      <li>{{ e }}</li>
+                    {% endfor %}
+                  </ul>
+                </div>
+              {% else %}
+                {{ form.data_validade(class="form-control", placeholder="data de validade (dd/mm/yyyy)") }}
+              {% endif %}
+            </div>
+            <div class="col">
+                {% if form.errors.preco %}
+                  {{ form.preco(class="form-control is-invalid", placeholder="Preço unitário ") }}
+                  <div class="invalid-feedback">
+                    <ul>
+                      {% for e in form.errors.codigo_lote %}
+                        <li>{{ e }}</li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+                {% else %}
+                  {{ form.preco(class="form-control", placeholder="Preço unitário ") }}
+                {% endif %}
+            </div>
+            <div class="col-4">
+              {% if form.errors.teor_alcool %}
+                <div class="input-group">
+                    {{ form.teor_alcool(class="form-control is-invalid", placeholder="Teor alcoólico") }}
+                    <span class="input-group-addon" id="basic-addon2">%</span>
+                </div>
+                <div class="invalid-feedback">
+                  <ul>
+                    {% for e in form.errors.teor_alcool %}
+                      <li>{{ e }}</li>
+                    {% endfor %}
+                  </ul>
+                </div>
+                {% else %}
+                <div class="input-group">
+                  {{ form.teor_alcool(class="form-control", placeholder="Teor alcoólico") }}
+                  <span class="input-group-addon" id="basic-addon2">%</span>
+                </div>
+                {% endif %}
+
+            </div>
+        </div>
+
+        <br>
+        <!-- Linha 5 - Qtde de entrada, Max e Min da Qtde -->
+        <div class="form-row">
+          <div class="col">
+            {% if form.errors.quantidade %}
+              {{ form.quantidade(class="form-control is-invalid", placeholder="Quantidade de entrada") }}
+              <div class="invalid-feedback">
+                <ul>
+                  {% for e in form.errors.quantidade %}
+                    <li>{{ e }}</li>
+                  {% endfor %}
+                </ul>
+              </div>
+            {% else %}
+              {{ form.quantidade(class="form-control", placeholder="Quantidade de entrada") }}
+            {% endif %}
+          </div>
+          <div class="col">
+            {% if form.errors.max_estoque %}
+              {{ form.max_estoque(class="form-control is-invalid", placeholder="Máximo em estoque") }}
+              <div class="invalid-feedback">
+                <ul>
+                  {% for e in form.errors.max_estoque %}
+                    <li>{{ e }}</li>
+                  {% endfor %}
+                </ul>
+              </div>
+            {% else %}
+              {{ form.max_estoque(class="form-control", placeholder="Máximo em estoque") }}
+            {% endif %}
+          </div>
+          <div class="col">
+            {% if form.errors.min_estoque %}
+              {{ form.min_estoque(class="form-control is-invalid", placeholder="Mínimo em estoque") }}
+              <div class="invalid-feedback">
+                <ul>
+                  {% for e in form.errors.min_estoque %}
+                    <li>{{ e }}</li>
+                  {% endfor %}
+                </ul>
+              </div>
+            {% else %}
+              {{ form.min_estoque(class="form-control", placeholder="Mínimo em estoque") }}
+            {% endif %}
+          </div>
+        </div>
+
+        <br>
+        <!-- Botão - Cadastro -->
+        <button type="submit" class="btn btn-dark">Cadastrar</button>
+      </form>
+    </div>
+
+    <!-- JavaScript -->
+    <!-- datapicker - Data de validade(não ta funcionando) -->
+    <script type="text/javascript">
+      $('#dataValidade').datepicker({
+        format: "dd/mm/yyyy",
+        startDate: '+0',
+        language: "pt-BR",
+      });
+    </script>
+
+{% endblock %}

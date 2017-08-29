@@ -1,0 +1,23 @@
+@app.route("/salvar_fabricante", methods=["GET", "POST"])
+def salvar_fabricante(form):
+    fabricante = Fabricante(request.form['nome_fabricante'])
+
+    db.session.add(fabricante)
+    db.session.commit()
+    return True
+
+@app.route("/salvar_categoria", methods=["GET", "POST"])
+def salvar_categoria(form):
+    categoria = Categoria(request.form['nome_categoria'])
+
+    db.session.add(categoria)
+    db.session.commit()
+    return True
+
+@app.route("/salvar_fornecedor", methods=["GET", "POST"])
+def salvar_fornecedor(form):
+    fornecedor = Fornecedor(request.form['nome_fornecedor'])
+
+    db.session.add(fabricante)
+    db.session.commit()
+    return True
